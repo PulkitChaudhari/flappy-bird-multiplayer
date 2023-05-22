@@ -201,10 +201,46 @@ document.addEventListener('DOMContentLoaded', function()
           if ((pipes[i].x <= bird.x && bird.x <= pipes[i].x + pipes[i].width) || (pipes[i].x <= bird.x + bird.width && bird.x + bird.width <= pipes[i].x + pipes[i].width)) {
             if (pipes[i].y + pipes[i].height > bird.y || pipes[i].height + pipes[i].gap < bird.y + bird.height) {
               // Collision happened
-              console.log(bird.x,bird.y,pipes[i].x,pipes[i].y + pipes[i].height, pipes[i].height + pipes[i].gap)
+              // console.log(bird.x,bird.y,pipes[i].x,pipes[i].y + pipes[i].height, pipes[i].height + pipes[i].gap)
+              console.log(pipes)
+            //   [
+            //     {
+            //         "x": 82,
+            //         "y": 0,
+            //         "width": 60,
+            //         "height": 148.17415419483817,
+            //         "gap": 150,
+            //         "speed": 2
+            //     },
+            //     {
+            //         "x": 282,
+            //         "y": 0,
+            //         "width": 60,
+            //         "height": 207.1141035460748,
+            //         "gap": 150,
+            //         "speed": 2
+            //     },
+            //     {
+            //         "x": 484,
+            //         "y": 0,
+            //         "width": 60,
+            //         "height": 377.86066747345745,
+            //         "gap": 150,
+            //         "speed": 2
+            //     },
+            //     {
+            //         "x": 686,
+            //         "y": 0,
+            //         "width": 60,
+            //         "height": 226.90705142525508,
+            //         "gap": 150,
+            //         "speed": 2
+            //     }
+            // ]
               // 250 300 330 343.47716242290954 493.47716242290954
               animate();
               displayGameOver();
+              break;
             }
           }
         }
