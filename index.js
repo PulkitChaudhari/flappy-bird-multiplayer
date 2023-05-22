@@ -19,6 +19,11 @@ document.addEventListener('DOMContentLoaded', function()
         width: 80,
         height: 80,
         image: new Image(),
+        jumpStrength: 6,
+        jumpDuration: 0, // Duration of the jump in milliseconds
+        // isJumping: false,
+        velocity: 0,
+        gravity: 0.5,
     };
     
     // Defining birds image source
@@ -29,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function()
         ctx.drawImage(bird.image, bird.x, bird.y, bird.width, bird.height);
     }
 
-        let gravity = 0.0003;
+        let gravity = 1;
         let velocity = 0;
 
     function animate() {
@@ -38,7 +43,17 @@ document.addEventListener('DOMContentLoaded', function()
         drawBird();
         requestAnimationFrame(animate);
     }
+
+    canvas.addEventListener('click', function() {
+        bird.velocity = -bird.jumpStrength;
+    });
+
+    function updateBird() {
+      bird.velocity += bird.gravity;
+      bird.y += bird.velocity;
     
+      // Additional logic for collision detection, game over, etc.
+    }
 
     let pipes = [];
 
@@ -54,7 +69,8 @@ document.addEventListener('DOMContentLoaded', function()
         x: canvas.width,
         y: 0,
         width: 60,
-        height: Math.random() * (canvas.height - 150 - 50) + 50,
+        // height: Math.random() * (canvas.height - 150 - 50) + 50,
+        height : 329,
         gap: 150,
         speed: 2 // speed at which the pipes move
       })
@@ -124,7 +140,6 @@ document.addEventListener('DOMContentLoaded', function()
           const buttonWidth = 200;
           const buttonHeight = 50;
           const borderWidth = 3;
-          console.log(canvas.width,canvas.height)
 
           // // Display the restart button 
           ctx.fillStyle = '#00FF00';
@@ -183,24 +198,29 @@ document.addEventListener('DOMContentLoaded', function()
       function checkCollision() {
         for (let i = 0; i < pipes.length; i++) {
           if (pipes[i].x > bird.width + bird.x) break;
-          else if (pipes[i].y + pipes[i].height > bird.y || pipes[i].height + pipes[i].gap < bird.y + bird.height) {
-            // Collision happened
-            animate();
-            displayGameOver();
+          if ((pipes[i].x <= bird.x && bird.x <= pipes[i].x + pipes[i].width) || (pipes[i].x <= bird.x + bird.width && bird.x + bird.width <= pipes[i].x + pipes[i].width)) {
+            if (pipes[i].y + pipes[i].height > bird.y || pipes[i].height + pipes[i].gap < bird.y + bird.height) {
+              // Collision happened
+              console.log(bird.x,bird.y,pipes[i].x,pipes[i].y + pipes[i].height, pipes[i].height + pipes[i].gap)
+              // 250 300 330 343.47716242290954 493.47716242290954
+              animate();
+              displayGameOver();
+            }
           }
-
         }
       }
 
       function gameLoop() {
         // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+
+        // Draw other elements such as the background, bird, etc.
         ctx.fillStyle = '#70c5ce';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // updateBird()
         ctx.drawImage(bird.image, bird.x, bird.y, bird.width, bird.height);
-      
-        // Draw other elements such as the background, bird, etc.
-      
+
         // Move and draw the pipes
         movePipes();
 
