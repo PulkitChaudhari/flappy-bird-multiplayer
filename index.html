@@ -1,19 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="./index.css">
-<script src="./index.js"></script>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./index.css" />
+  <script src="./index.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flappy Bird</title>
-</head>
-<body>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header-title">Flappy Bird</h1>
+    </header>
     <div class="container">
-    <canvas id="myCanvas" width="800" height="600"></canvas>
-    <button id="restart-button">Restart</button>
-    
-  </div>
-  
-</body>
+      <div class="left"></div>
+      <canvas id="myCanvas" height="600px" width="800px"></canvas>
+      <div class="right">
+        <div class="right-room-info">
+          <button>Leave room</button>
+          <div class="player-info">
+            <div class="player-individual">
+              <img
+                src="https://cloudfour.com/examples/img-currentsrc/images/kitten-large.png"
+                class="player-image"
+              />
+              <h4 class="player-name">Player 1</h4>
+            </div>
+            <div class="player-individual">
+              <img
+                src="https://cloudfour.com/examples/img-currentsrc/images/kitten-large.png"
+                class="player-image"
+              />
+              <h4 class="player-name">Player 2</h4>
+            </div>
+            <div class="player-individual">
+              <img
+                src="https://cloudfour.com/examples/img-currentsrc/images/kitten-large.png"
+                class="player-image"
+              />
+              <h4 class="player-name">Player 3</h4>
+            </div>
+            <div class="player-individual">
+              <img
+                src="https://cloudfour.com/examples/img-currentsrc/images/kitten-large.png"
+                class="player-image"
+              />
+              <h4 class="player-name">Player 4</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer"></footer>
+  </body>
 </html>
